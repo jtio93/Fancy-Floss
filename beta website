@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Floss - Mindful Luxury Dental Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage-light: #E8EDE7;
+            --sage: #9CAF88;
+            --sage-dark: #6B7C5C;
+            --forest: #4A5D3F;
+            --cream: #FAF8F5;
+            --stone: #E5E1D8;
+            --charcoal: #2D2D2D;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .header.scrolled {
+            background-color: rgba(250, 248, 245, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--forest);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--sage);
+        }
+
+        .cart-icon {
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--sage-dark);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--sage-light) 0%, var(--cream) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .brand-name {
+            font-family: 'Lora', serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 400;
+            color: var(--forest);
+            letter-spacing: 0.03em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .origin-marks {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            margin: 3rem 0 4rem;
+            flex-wrap: wrap;
+        }
+
+        .origin-mark {
+            text-align: center;
+        }
+
+        .origin-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .origin-location {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            color: var(--forest);
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 3.5rem;
+            background-color: var(--sage-dark);
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 500;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--forest);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Lora', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--forest);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: var(--white);
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background-color: var(--sage-light);
+        }
+
+        .product-image {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .product-name {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .product-features li {
+            font-size: 0.85rem;
+            color: var(--sage-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--forest);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .add-to-cart-btn {
+            padding: 1rem 3rem;
+            background-color: var(--sage-dark);
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--forest);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Features Section */
+        .features-section {
+            background-color: var(--sage-light);
+            padding: 8rem 4rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-family: 'Lora', serif;
+            font-size: 1.4rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 8rem 4rem;
+            background-color: var(--white);
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background-color: var(--sage);
+            margin: 3rem auto;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            transition: right 0.4s ease;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--stone);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--forest);
+            font-weight: 400;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal);
+            padding: 0.5rem;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--stone);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--sage-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--sage-dark);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            color: var(--sage-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            background-color: var(--sage-light);
+            border: none;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--forest);
+            transition: background-color 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background-color: var(--sage);
+            color: var(--white);
+        }
+
+        .qty-display {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--sage-dark);
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-decoration: underline;
+            margin-top: 0.5rem;
+        }
+
+        .cart-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--stone);
+            background-color: var(--sage-light);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .cart-total-label {
+            font-weight: 500;
+            color: var(--forest);
+        }
+
+        .cart-total-amount {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--forest);
+            font-weight: 500;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background-color: var(--forest);
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--sage-dark);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--sage-dark);
+        }
+
+        .empty-cart-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 1999;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--forest);
+            color: var(--sage-light);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--sage-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--sage);
+            margin-top: 2rem;
+            font-weight: 300;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 1.5rem 2rem;
+            }
+
+            .products-section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .origin-marks {
+                gap: 3rem;
+            }
+
+            .features-section,
+            .story-section {
+                padding: 4rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#" class="logo">Fancy Floss</a>
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#products" class="nav-link">Shop</a></li>
+                    <li><a href="#story" class="nav-link">Our Story</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="cartIcon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Cart</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛒</div>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span class="cart-total-label">Total</span>
+                <span class="cart-total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="brand-name">Fancy Floss</h1>
+            <p class="tagline">Mindful Luxury Dental Care</p>
+            
+            <div class="origin-marks">
+                <div class="origin-mark">
+                    <div class="origin-label">Designed in</div>
+                    <div class="origin-location">San Francisco</div>
+                </div>
+                <div class="origin-mark">
+                    <div class="origin-label">Made in</div>
+                    <div class="origin-location">Italy</div>
+                </div>
+            </div>
+
+            <a href="#products" class="hero-cta">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <h2 class="section-title">Our Collection</h2>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <span style="color: var(--sage-dark); font-size: 0.9rem;">Waxed Mint Floss</span>
+                </div>
+                <h3 class="product-name">Waxed Mint Floss</h3>
+                <p class="product-description">
+                    Premium Italian-crafted dental floss that expands when wet for superior cleaning. 
+                    Housed in a container made from 100% recycled ocean-bound plastic.
+                </p>
+                <ul class="product-features">
+                    <li>• Expands on contact with saliva</li>
+                    <li>• 100% recycled plastic container</li>
+                    <li>• Natural mint essence</li>
+                    <li>• Biodegradable silk fibers</li>
+                </ul>
+                <p class="product-price">$8.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Waxed Mint Floss', 8.00, 1)">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <span style="color: var(--sage-dark); font-size: 0.9rem;">Refill Spools</span>
+                </div>
+                <h3 class="product-name">Refill Spools</h3>
+                <p class="product-description">
+                    Two-pack refill system designed for longevity. Simply replace the spool, 
+                    not the container—reducing waste while maintaining Italian quality.
+                </p>
+                <ul class="product-features">
+                    <li>• Two refill spools included</li>
+                    <li>• Zero additional plastic waste</li>
+                    <li>• Same expanding technology</li>
+                    <li>• Sustainable design</li>
+                </ul>
+                <p class="product-price">$12.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Refill Spools (2-Pack)', 12.00, 2)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Thoughtfully Designed</h2>
+        
+        <div class="features-grid">
+            <div class="feature-item fade-in">
+                <div class="feature-icon">💧</div>
+                <h3 class="feature-title">Expanding Technology</h3>
+                <p class="feature-text">
+                    Our floss expands upon contact with saliva, increasing surface area 
+                    to clean more effectively between teeth and along the gum line.
+                </p>
+            </div>
+
+            <div class="feature-item fade-in">
+                <div class="feature-icon">♻️</div>
+                <h3 class="feature-title">Ocean-Bound Plastic</h3>
+                <p class="feature-text">
+                    Every container is crafted from 100% recycled ocean-bound plastic, 
+                    giving marine waste new purpose while you maintain your routine.
+                </p>
+            </div>
+
+            <div class="feature-item fade-in">
+                <div class="feature-icon">🌱</div>
+                <h3 class="feature-title">Natural Materials</h3>
+                <p class="feature-text">
+                    Biodegradable silk fibers infused with natural mint essence. 
+                    Gentle on gums, effective on plaque, kind to the Earth.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-content">
+            <h2 class="section-title">Where Innovation Meets Tradition</h2>
+            <div class="divider"></div>
+            <p class="story-text">
+                Fancy Floss was born from a simple belief: daily rituals should be mindful, 
+                luxurious, and responsible. Designed in San Francisco's innovation hub and 
+                crafted by Italian artisans with centuries of textile expertise.
+            </p>
+            <p class="story-text">
+                Each detail—from the expanding fiber technology to the recycled containers—
+                reflects our commitment to excellence without compromise. This is dental care 
+                reimagined for those who value both quality and consciousness.
+            </p>
+            <p class="story-text">
+                Because luxury and sustainability are not opposites. They're essentials.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-brand">Fancy Floss</div>
+        <div class="footer-tagline">San Francisco × Italy</div>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Shop</a>
+            <a href="#" class="footer-link">About</a>
+            <a href="#" class="footer-link">Sustainability</a>
+            <a href="#" class="footer-link">Wholesale</a>
+            <a href="#" class="footer-link">Contact</a>
+        </div>
+
+        <div class="copyright">
+            © 2026 Fancy Floss. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Cart Management
+        let cart = [];
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Cart functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartFooter = document.getElementById('cartFooter');
+
+        function openCart() {
+            cartSidebar.classList.add('open');
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCartSidebar() {
+            cartSidebar.classList.remove('open');
+            cartOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        cartIcon.addEventListener('click', openCart);
+        closeCart.addEventListener('click', closeCartSidebar);
+        cartOverlay.addEventListener('click', closeCartSidebar);
+
+        function addToCart(name, price, id) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            openCart();
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            ${item.name.split(' ')[0]}
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                                <span class="qty-display">${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Calculate total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+                cartFooter.style.display = 'block';
+            }
+        }
+
+        function checkout() {
+            alert('Checkout functionality would integrate with your payment processor (Stripe, PayPal, etc.)');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize cart on page load
+        updateCart();
+    </script>
+</body>
+</html>
