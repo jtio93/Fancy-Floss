@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fancy floss - Soft, sustainable floss made from recycled plastic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EDE5DB;
+            --cream-light: #F2EBE3;
+            --sage: #9CB8A3;
+            --sage-dark: #6B8272;
+            --forest: #3E5A4A;
+            --sand: #D9CAB8;
+            --charcoal: #2D2D2D;
+            --white: #FFFFFF;
+            --blue-tint: #E8EEF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, var(--cream-light) 0%, var(--blue-tint) 100%);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.012) 2px, rgba(0,0,0,0.012) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.012) 2px, rgba(0,0,0,0.012) 4px);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.35;
+        }
+
+        img {
+            filter: contrast(0.96) saturate(0.90) brightness(1.03);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background-color: transparent;
+        }
+
+        .header.scrolled {
+            background-color: rgba(242, 235, 227, 0.96);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.03);
+            padding: 1.3rem 4rem;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--sage-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--forest);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--sage-dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--sage-dark);
+        }
+
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7rem 2rem 5rem;
+            background: linear-gradient(180deg, var(--cream-light) 0%, var(--blue-tint) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.12;
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(4rem, 11vw, 7.5rem);
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 2rem;
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+        }
+
+        .tagline {
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            color: var(--charcoal);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.9;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtagline {
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: var(--sage-dark);
+            font-weight: 400;
+            margin-bottom: 3.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1.3rem 4.5rem;
+            background-color: var(--forest);
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.14em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(62, 90, 74, 0.15);
+        }
+
+        .hero-cta:hover {
+            background-color: var(--sage-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(62, 90, 74, 0.25);
+        }
+
+        .product-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 2px 25px rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 45px rgba(0,0,0,0.08);
+        }
+
+        .product-card.featured {
+            border: 1px solid var(--sage);
+            position: relative;
+        }
+
+        .product-card.featured::before {
+            content: 'Best Value';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--sage-dark);
+            color: var(--white);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .product-image-side {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--cream-light) 0%, var(--blue-tint) 100%);
+            padding: 2rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .product-image-side img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .product-description {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            padding: 0;
+            text-align: left;
+        }
+
+        .product-features li {
+            font-size: 0.88rem;
+            color: var(--sage-dark);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .price-container {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--cream-light) 0%, rgba(242, 235, 227, 0.6) 100%);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 0.3rem;
+        }
+
+        .price-description {
+            font-size: 0.85rem;
+            color: var(--sage-dark);
+            font-weight: 400;
+        }
+
+        .buy-btn {
+            padding: 1.1rem 2.5rem;
+            background-color: var(--forest);
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .buy-btn:hover {
+            background-color: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .values-section {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--forest);
+            text-align: center;
+            margin-bottom: 4.5rem;
+            font-weight: 700;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: var(--cream-light);
+            border-radius: 4px;
+        }
+
+        .value-title {
+            font-size: 1.2rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .value-text {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .story-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, var(--white) 50%, rgba(255,255,255,0.5) 100%);
+        }
+
+        .bay-area-section {
+            padding: 5rem 2rem;
+            background-color: var(--forest);
+            color: var(--cream);
+        }
+
+        .bay-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bay-content .section-title {
+            color: var(--cream);
+        }
+
+        .bay-content .divider {
+            background: linear-gradient(90deg, transparent 0%, var(--sage) 50%, transparent 100%);
+        }
+
+        .bay-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--cream);
+            font-weight: 300;
+        }
+
+        .story-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--charcoal);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            text-align: left;
+        }
+
+        .story-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--sage) 50%, transparent 100%);
+            margin: 3rem auto;
+        }
+
+        .footer {
+            background-color: var(--forest);
+            color: var(--cream);
+            padding: 4rem 2rem 2.5rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            font-size: 0.88rem;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--sage-dark);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .social-link:hover {
+            color: var(--white);
+            border-color: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--sage);
+            margin-top: 3rem;
+            font-weight: 300;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 968px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 2rem;
+            }
+
+            .header.scrolled {
+                padding: 1.2rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem 3rem;
+            }
+
+            .product-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .product-card {
+                padding: 2.5rem 2rem;
+            }
+
+            .product-image-side {
+                height: 240px;
+            }
+
+            .product-name {
+                font-size: 1.6rem;
+            }
+
+            .price {
+                font-size: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .story-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .story-text {
+                font-size: 1rem;
+                line-height: 1.9;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <a href="#" class="logo">fancy floss</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#product" class="nav-link">Product</a></li>
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="1770400674379_image.png" alt="Smile more" class="hero-image-bg">
+        <div class="hero-content">
+            <h1 class="brand-name">fancy floss</h1>
+            <p class="tagline">Soft, sustainable floss made from recycled plastic that feels luxurious on your teeth and gums</p>
+            <a href="#product" class="hero-cta">Shop</a>
+        </div>
+    </section>
+
+    <section class="product-section" id="product">
+        <h2 class="section-title">Shop</h2>
+        
+        <div class="products-grid">
+            <!-- Complete Set -->
+            <div class="product-card featured">
+                <div class="product-image-side">
+                    <img src="1770400674379_image.png" alt="The Complete Set">
+                </div>
+                <h3 class="product-name">The Complete Set</h3>
+                <p class="product-description">
+                    One container, three spools. Three months of superior cleaning.
+                </p>
+                <ul class="product-features">
+                    <li>Thicker floss that reaches more surface area</li>
+                    <li>Dry rise texture for deeper cleaning</li>
+                    <li>Three 14-meter spools (3 months supply)</li>
+                    <li>Ocean-bound recycled plastic container</li>
+                    <li>Made in Italy</li>
+                </ul>
+                <div class="price-container">
+                    <div class="price">$22.99</div>
+                    <div class="price-description">Best value</div>
+                </div>
+                <a href="YOUR_STRIPE_COMPLETE_SET_LINK" class="buy-btn">Buy Now</a>
+            </div>
+
+            <!-- Starter -->
+            <div class="product-card">
+                <div class="product-image-side">
+                    <img src="1770400712788_image.png" alt="The Starter">
+                </div>
+                <h3 class="product-name">The Starter</h3>
+                <p class="product-description">
+                    One container, one spool. Try the difference.
+                </p>
+                <ul class="product-features">
+                    <li>Thicker floss that cleans better</li>
+                    <li>Dry rise texture reaches more surface area</li>
+                    <li>One 14-meter spool (1 month supply)</li>
+                    <li>Ocean-bound recycled plastic container</li>
+                    <li>Made in Italy</li>
+                </ul>
+                <div class="price-container">
+                    <div class="price">$9.99</div>
+                    <div class="price-description">Try it first</div>
+                </div>
+                <a href="YOUR_STRIPE_STARTER_LINK" class="buy-btn">Buy Now</a>
+            </div>
+
+            <!-- Refills -->
+            <div class="product-card">
+                <div class="product-image-side">
+                    <img src="1770400699217_image.png" alt="Refills">
+                </div>
+                <h3 class="product-name">Refills</h3>
+                <p class="product-description">
+                    Two spools. Two months of superior cleaning.
+                </p>
+                <ul class="product-features">
+                    <li>Thicker floss that reaches more surface area</li>
+                    <li>Dry rise texture for deeper cleaning</li>
+                    <li>Two 14-meter spools (2 months supply)</li>
+                    <li>No additional plastic waste</li>
+                    <li>Made in Italy</li>
+                </ul>
+                <div class="price-container">
+                    <div class="price">$14.99</div>
+                    <div class="price-description">For existing containers</div>
+                </div>
+                <a href="YOUR_STRIPE_REFILL_LINK" class="buy-btn">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="section-title">Why fancy floss</h2>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <h3 class="value-title">Thicker & Better</h3>
+                <p class="value-text">
+                    Our dry rise floss is thicker than standard floss, reaching more surface area for deeper cleaning between teeth.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <h3 class="value-title">Looks Good</h3>
+                <p class="value-text">
+                    A dispenser you'll want on your counter. Minimal design, built to last.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <h3 class="value-title">Refillable</h3>
+                <p class="value-text">
+                    Keep the container, swap the spools. Less waste, less plastic.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <h3 class="value-title">Ocean Plastic</h3>
+                <p class="value-text">
+                    Made from ocean-bound plastic that was intercepted before reaching our oceans.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bay-area-section">
+        <div class="bay-content">
+            <h2 class="section-title">Made in San Francisco</h2>
+            <div class="divider"></div>
+            <p class="bay-text">
+                Born at Dolores Park. Designed in the Bay Area. Our floss reflects the values we care about here — sustainability, quality, and doing things the right way.
+            </p>
+        </div>
+    </section>
+
+    <section class="story-section" id="story">
+        <div class="story-content">
+            <h2 class="section-title">Our Story</h2>
+            <div class="divider"></div>
+            
+            <p class="story-text">
+                It started at Dolores Park in San Francisco. My friend Katie and I were taking a break, enjoying the weather and a Mission burrito. Our conversation drifted to oral hygiene — as it does when you're friends with a dentist.
+            </p>
+            
+            <p class="story-text">
+                Katie graduated from Creighton University Dental School in 2020 and built her practice in San Francisco. I'm Jacquie — I have a biochemistry degree and spent years in quality control and quality assurance across biopharma, food production, and climate tech. When a piece of meat got stuck between my teeth, I asked Katie for her professional recommendation on the best floss available.
+            </p>
+            
+            <p class="story-text">
+                As serial flossers, we were both frustrated with what's out there. Most floss shreds. The sustainable options are expensive. Nothing really looked good sitting on the counter. We recognized the gap — and decided to make something better.
+            </p>
+            
+            <div class="divider"></div>
+            
+            <p class="story-text">
+                Katie knew what patients actually needed from her years treating them. My background in quality control — from pharmaceutical manufacturing to food safety to climate tech — gave me the foundation to understand what makes a product well-made. We chose to manufacture in Italy because of their commitment to quality craftsmanship and environmental standards.
+            </p>
+            
+            <p class="story-text">
+                So we made fancy floss. Thicker dry rise floss from Italy that reaches more surface area and cleans better than standard floss. A container made from ocean-bound recycled plastic that you'll actually want to refill. Designed in San Francisco, made with the environment in mind.
+            </p>
+            
+            <p class="story-text" style="font-style: italic; color: var(--sage-dark);">
+                That's it. Just better floss from two friends who got tired of the options.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-brand">fancy floss</div>
+        <div class="footer-tagline">Made in Italy. Designed in San Francisco.</div>
+        
+        <div style="margin: 2.5rem 0;">
+            <a href="https://instagram.com/fancyfloss415" target="_blank" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                @fancyfloss415
+            </a>
+        </div>
+
+        <div class="copyright">
+            © 2026 Gaia Health SF LLC. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
